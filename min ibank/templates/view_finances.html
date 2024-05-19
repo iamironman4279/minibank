@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Finances</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>View Finances</h1>
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>From</th>
+        </tr>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction[1] }}</td>
+            <td>₹{{ '%.2f' % transaction[2] }}</td>
+            <td>{{ transaction[4] }}</td>
+            <td>{{ transaction[5] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Current Balance: ₹{{ '%.2f' % balance }}</h2>
+    <a href="/">Back to Home</a>
+    <br><br>
+    <a href="/generate_pdf" class="button">Download PDF Statement</a>
+</body>
+</html>
